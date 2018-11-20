@@ -10,6 +10,7 @@ import { config } from './config'
       
     }
   }
+  componentWillMount() { }
 
   componentDidMount() { }
 
