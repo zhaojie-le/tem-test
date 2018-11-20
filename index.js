@@ -1,19 +1,25 @@
 import { injectReducer } from 'store/reducers'
 import { injectSagas } from 'store/sagas'
 
-export default store => ({
-  path: 'inquiry',
-  breadcrumbName: '查询工作台',
-  breadcrumbCode: 'breadcrumb.workbench',
+export default (store) => ({
+  path: 'manager',
+  breadcrumbName: '',
+  /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
-    Promise.all([import('./Workbench.js')]).then(([Containers]) => {
-      const reducer = Containers.default.reducer
-      const sagas = Containers.default.sagas
-      const key = Containers.default.stateKey
-      injectReducer(store, { key, reducer })
-      injectSagas(store, { key, sagas })
+    /*  Webpack - use 'System.import' to create a split point
+        and embed an async module loader (jsonp) when bundling   */
+    Promise.all([
+      import('./containers/'),
+      import('./modules'),
+    ]).then(([Container, modules]) => {
+      const reducer = modules.default
+      const sagas = modules.sagas
+
+      injectReducer(store, { key: '', reducer })
+      injectSagas(store, { key: '', sagas })
+
       /*  Return getComponent   */
-      cb(null, Containers.default)
+      cb(null, Container.default)
     })
-  }
+  },
 })
