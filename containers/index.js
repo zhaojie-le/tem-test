@@ -7,6 +7,7 @@ const mapDispatchToProps = {
 }
 
 const mapStateToProps = (state) => ({
+  status: state.key.toJS(), // key
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndexContent)

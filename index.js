@@ -2,8 +2,8 @@ import { injectReducer } from 'store/reducers'
 import { injectSagas } from 'store/sagas'
 
 export default (store) => ({
-  path: 'manager',
-  breadcrumbName: '',
+  path: '',           // path
+  breadcrumbName: '', // title
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
     /*  Webpack - use 'System.import' to create a split point
@@ -15,8 +15,8 @@ export default (store) => ({
       const reducer = modules.default
       const sagas = modules.sagas
 
-      injectReducer(store, { key: '', reducer })
-      injectSagas(store, { key: '', sagas })
+      injectReducer(store, { key: '', reducer }) // key
+      injectSagas(store, { key: '', sagas })     // key
 
       /*  Return getComponent   */
       cb(null, Container.default)

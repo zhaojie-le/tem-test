@@ -4,8 +4,7 @@ import fetchAPI from 'api'
 import { SUCCESS } from 'api/config'
 import { message } from 'antd'
 import { singleton } from 'utils/single'
-import { CONFIG } from '../conf'
-const single = singleton.setKey('')
+const single = singleton.setKey('') // key
 const PAGE_SIZE = 25
 // ------------------------------------
 // Constants
@@ -41,10 +40,8 @@ export const actions = {
 // Reducer
 // ------------------------------------
 let initialState = Immutable.fromJS({
-  tab: 'statement',
   list: [],
   params: {},
-  toggleID: null,
   loading: false,
   pagination: {
     pageSize: PAGE_SIZE,
@@ -94,14 +91,13 @@ export default function Search (state = initialState, action) {
 // Sagas
 // ------------------------------------
 
-function* getListSaga (type, body) {
+function* getListSaga (body) {
   try {
     const state = yield select()
-    const { params, tab } = state.invoice_manager.toJS()
-    const _config = CONFIG[tab]
+    const { params } = state.key.toJS() // key
     params.page = params.page || 1
     params.limit = params.limit || PAGE_SIZE
-    const repos = yield call(fetchAPI, _config.api, params)
+    const repos = yield call(fetchAPI, 'api', params) // api
     if (repos.code === SUCCESS) {
       yield put(addListAction({ list: repos.data.list, total: repos.data.total }))
     } else {
