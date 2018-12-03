@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './index.less'
 class ComponentContent extends React.Component {
+	static propTypes = {
+	} 
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -15,8 +17,6 @@ class ComponentContent extends React.Component {
 			</div>
 		)
 	}
-}
-ComponentContent.propTypes={
 }
 
 ComponentContent.defaultProps={  
