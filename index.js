@@ -2,8 +2,8 @@ import { injectReducer } from 'store/reducers'
 import { injectSagas } from 'store/sagas'
 
 export default store => ({
-  path: 'inquiry',
-  breadcrumbName: '查询工作台',
+  path: '',  // path
+  breadcrumbName: '', // title
   breadcrumbCode: 'breadcrumb.workbench',
   getComponent (nextState, cb) {
     Promise.all([import('./Workbench.js')]).then(([Containers]) => {
