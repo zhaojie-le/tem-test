@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './{{template}}.less'
 import PropTypes from 'prop-types'
-import { config } from './config'
+import { config } from './conf'
 
  class {{template}} extends Component {
   constructor(props) {
