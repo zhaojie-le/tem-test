@@ -1,6 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { apis } from 'api/config'
+// import { Link } from 'react-router'
+// import { apis } from 'api/config'
 
 const columnsConf = [
   'example_name:60'

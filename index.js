@@ -7,8 +7,7 @@ export default store => ({
   breadcrumbCode: 'breadcrumb.workbench',
   getComponent (nextState, cb) {
     Promise.all([import('./Workbench.js')]).then(([Containers]) => {
-      const reducer = Containers.default.reducer
-      const sagas = Containers.default.sagas
+      const { reducer, sagas } = Containers.default
       const key = Containers.default.stateKey
       injectReducer(store, { key, reducer })
       injectSagas(store, { key, sagas })
